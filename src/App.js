@@ -1,14 +1,19 @@
 import { useState } from 'react';
 import ProductInput from './components/ProductInput';
+import ComplianceResults from './components/ComplianceResults';
+import { ComplianceCategorizer } from './utils/categorizer';
 import './App.css';
 
 function App() {
   const [analysisResults, setAnalysisResults] = useState(null);
 
   const handleAnalyze = (productData) => {
-    console.log('Analyzing product:', productData);
-    // We'll build the analysis logic next
-    setAnalysisResults(productData);
+    const results = ComplianceCategorizer.analyzeProduct(productData);
+    setAnalysisResults(results);
+  };
+
+  const handleStartOver = () => {
+    setAnalysisResults(null);
   };
 
   return (
@@ -18,12 +23,27 @@ function App() {
       </header>
       <main className="app-main">
         <div className="container">
-          <ProductInput onAnalyze={handleAnalyze} />
+          {!analysisResults ? (
+            <ProductInput onAnalyze={handleAnalyze} />
+          ) : (
+            <ComplianceResults results={analysisResults} />
+          )}
           
           {analysisResults && (
-            <div className="analysis-results">
-              <h3>Analysis Results:</h3>
-              <pre>{JSON.stringify(analysisResults, null, 2)}</pre>
+            <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+              <button 
+                onClick={handleStartOver}
+                style={{
+                  background: '#6b7280',
+                  color: 'white',
+                  padding: '0.75rem 1.5rem',
+                  border: 'none',
+                  borderRadius: '6px',
+                  cursor: 'pointer'
+                }}
+              >
+                ← Back to Product Input
+              </button>
             </div>
           )}
         </div>
