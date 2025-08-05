@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Dick's Sporting Goods - Smart Compliance Assistant
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React-based web application that provides intelligent compliance guidance for warehouse workers processing Dick's Sporting Goods orders.
 
-## Available Scripts
+## Problem Statement
 
-In the project directory, you can run:
+Warehouse workers at Dick's Sporting Goods face overwhelming complexity when processing orders:
+- 100+ VAS (Value Added Services) requirements across different product categories
+- 7 different purchase order types with unique packing rules
+- 50+ product-specific ticketing requirements
+- Complex compliance penalties ranging from $250-$500+ per violation
+- Cognitive overload leading to expensive mistakes and operational inefficiencies
 
-### `npm start`
+## Solution
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The Smart Compliance Assistant provides real-time guidance to ensure compliance while reducing cognitive load and preventing costly mistakes through:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Intelligent Product Categorization**: Automatically determines VAS requirements based on product attributes
+- **Dynamic Compliance Checklists**: Step-by-step guidance tailored to specific orders
+- **Financial Impact Calculator**: Shows real penalty costs to emphasize compliance importance
+- **Comprehensive Reference Tools**: Hanger guides, tucking rules, and special handling requirements
 
-### `npm test`
+## Key Features
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 🎯 Product Analysis Engine
+- Categorizes products by type, gender, size, and destination
+- Maps to specific VAS requirements (hanging, folding, ticketing, packaging)
+- Accounts for different order types (Bulk, Single Store, Direct-to-Store, E-commerce)
 
-### `npm run build`
+### 📋 Smart Compliance Checklists
+- Generates dynamic checklists based on product and order characteristics
+- Highlights critical requirements with penalty information
+- Provides context-sensitive guidance and instructions
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 💰 Penalty Impact Calculator
+- Calculates financial impact of compliance violations
+- Shows per-unit, per-carton, and per-shipment penalty structures
+- Projects annual cost impact for recurring violations
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 🏷️ Hanger Reference Guide
+- Complete lookup for GS1 standard hanger types
+- Searchable database of 14+ hanger codes
+- Tucking guidelines and special handling rules
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technology Stack
 
-### `npm run eject`
+- **Frontend**: React 18 with functional components and hooks
+- **Styling**: CSS3 with responsive design
+- **State Management**: React useState and context
+- **Architecture**: Component-based with separation of concerns
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Project Structure
