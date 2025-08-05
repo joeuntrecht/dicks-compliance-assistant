@@ -1,3 +1,5 @@
+import PenaltyCalculator from './PenaltyCalculator';
+
 function ComplianceResults({ results }) {
     if (!results) return null;
   
@@ -110,10 +112,12 @@ function ComplianceResults({ results }) {
           ))}
         </div>
   
-        <div className="action-buttons">
-          <button className="btn-print">Print Checklist</button>
-          <button className="btn-start-over">Start New Analysis</button>
-        </div>
+    <PenaltyCalculator checklist={checklist} />
+
+      <div className="action-buttons">
+        <button className="btn-print">Print Checklist</button>
+        <button className="btn-start-over">Start New Analysis</button>
+      </div>
       </div>
     );
   }
