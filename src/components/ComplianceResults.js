@@ -1,4 +1,5 @@
 import PenaltyCalculator from './PenaltyCalculator';
+import HangerGuide from './HangerGuide';
 
 function ComplianceResults({ results }) {
     if (!results) return null;
@@ -111,13 +112,15 @@ function ComplianceResults({ results }) {
             </div>
           ))}
         </div>
-  
-    <PenaltyCalculator checklist={checklist} />
 
-      <div className="action-buttons">
+    <PenaltyCalculator checklist={checklist} />
+      
+    <HangerGuide />
+
+    <div className="action-buttons">
         <button className="btn-print">Print Checklist</button>
         <button className="btn-start-over">Start New Analysis</button>
-      </div>
+    </div>
       </div>
     );
   }
