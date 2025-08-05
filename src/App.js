@@ -26,25 +26,10 @@ function App() {
           {!analysisResults ? (
             <ProductInput onAnalyze={handleAnalyze} />
           ) : (
-            <ComplianceResults results={analysisResults} />
-          )}
-          
-          {analysisResults && (
-            <div style={{ marginTop: '1rem', textAlign: 'center' }}>
-              <button 
-                onClick={handleStartOver}
-                style={{
-                  background: '#6b7280',
-                  color: 'white',
-                  padding: '0.75rem 1.5rem',
-                  border: 'none',
-                  borderRadius: '6px',
-                  cursor: 'pointer'
-                }}
-              >
-                ← Back to Product Input
-              </button>
-            </div>
+            <ComplianceResults 
+              results={analysisResults} 
+              onStartOver={handleStartOver}
+            />
           )}
         </div>
       </main>

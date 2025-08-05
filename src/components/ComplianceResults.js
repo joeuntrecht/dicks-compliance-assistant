@@ -1,7 +1,7 @@
 import PenaltyCalculator from './PenaltyCalculator';
 import HangerGuide from './HangerGuide';
 
-function ComplianceResults({ results }) {
+function ComplianceResults({ results, onStartOver }) {
     if (!results) return null;
   
     const { productInfo, checklist, riskAssessment } = results;
@@ -118,8 +118,18 @@ function ComplianceResults({ results }) {
     <HangerGuide />
 
     <div className="action-buttons">
-        <button className="btn-print">Print Checklist</button>
-        <button className="btn-start-over">Start New Analysis</button>
+        <button 
+          className="btn-print"
+          onClick={() => window.print()}
+        >
+          Print Checklist
+        </button>
+        <button 
+          className="btn-start-over"
+          onClick={onStartOver}
+        >
+          Start New Analysis
+        </button>
     </div>
       </div>
     );
