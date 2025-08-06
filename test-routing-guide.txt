@@ -1,0 +1,34 @@
+ROUTING GUIDE
+
+HANGER REQUIREMENTS
+
+Hanger Type 484: Used for mens tops, womens tops, standard apparel items
+Hanger Type 485: Used for youth tops, youth apparel
+Hanger Type 6010: Used for womens bottoms, youth bottoms
+Hanger Type 6012: Used for mens bottoms, athletic bottoms
+
+PRODUCT REQUIREMENTS
+
+Apparel Tops:
+- Hanging required
+- Retail ticketing required on hang tag near UPC
+- Sizer required
+
+Apparel Bottoms:
+- Hanging required with closed presentation
+- Double tuck for medium and large sizes
+- Retail ticketing required
+
+PENALTY SCHEDULE
+
+$0.50 per unit service fee for incorrect hanging
+$0.25 per unit service fee for missing sizer
+$250 service fee per shipment for labeling errors
+$500 per shipment for missing ASN
+
+ORDER TYPES
+
+Bulk Orders: Single UPC per carton required
+Single Store Orders: Mixed UPC allowed, minimize carton count
+Direct to Store: Packing slip required for each carton
+E-commerce: Individual polybag required, no hangers, 40 pound max weight
