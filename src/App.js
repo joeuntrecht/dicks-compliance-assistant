@@ -105,7 +105,7 @@ function App() {
                     </div>
                     <div className="benefit">
                       <h4>📋 Step-by-Step</h4>
-                      <p>Clear guidance for complex VAS requirements</p>
+                      <p>Get clear guidance for complex VAS requirements</p>
                     </div>
                   </div>
                 </div>

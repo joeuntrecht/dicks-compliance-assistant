@@ -70,9 +70,10 @@ function RetailerSelector({ onRetailerSelected, currentRetailer, isLoading }) {
         <h5>🎯 What This Does:</h5>
         <ul>
           <li><strong>Automatic Rule Loading:</strong> Loads retailer-specific compliance requirements</li>
+          <li><strong>Warehouse Worker Complicance Checklist:</strong> Automatically creates retailer specific compliance checklist for warehouse workers</li>
           <li><strong>No Manual Upload:</strong> Routing guides are pre-loaded and maintained</li>
           <li><strong>Always Current:</strong> Rules updated when retailers publish new guides</li>
-          <li><strong>Worker Friendly:</strong> Simple selection, no PDF handling required</li>
+          <li><strong>Worker Friendly:</strong> Simple selection, no PDF handling required, and easy to follow checklist</li>
         </ul>
       </div>
     </div>
