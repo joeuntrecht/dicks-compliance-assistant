@@ -240,18 +240,11 @@ export class DynamicRuleEngine {
     }
   
     addPenaltyBasedRequirements(checklist) {
-      // Add requirements based on penalty rules from PDF
-      this.rules.penaltyRules.forEach(penalty => {
-        if (penalty.violation && penalty.amount > 0) {
-          checklist.push({
-            category: 'Compliance',
-            requirement: `Avoid ${penalty.violation} violations`,
-            critical: penalty.amount > 100,
-            penaltyIfMissed: `$${penalty.amount} per ${penalty.unit}`
-          });
-        }
-      });
-    }
+        // Skip adding generic penalty-based requirements
+        // The specific VAS requirements already include penalty information
+        // This prevents duplicate "Avoid general violations" entries
+        return;
+      }
   
     calculateRisk(checklist) {
       const criticalItems = checklist.filter(item => item.critical);

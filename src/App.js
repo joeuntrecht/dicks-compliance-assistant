@@ -1,21 +1,22 @@
 import { useState } from 'react';
 import ProductInput from './components/ProductInput';
 import ComplianceResults from './components/ComplianceResults';
-import PDFParser from './components/PDFParser';
+import RetailerSelector from './components/RetailerSelector';
 import HangerGuide from './components/HangerGuide';
 import { DynamicRuleEngine } from './utils/dynamicRuleEngine';
+import { PDFLoader } from './utils/pdfLoader';
 import './App.css';
 
 function App() {
   const [analysisResults, setAnalysisResults] = useState(null);
-  const [showPDFParser, setShowPDFParser] = useState(true); // Show by default since we need PDF data
   const [ruleEngine, setRuleEngine] = useState(new DynamicRuleEngine());
-  const [dataSource, setDataSource] = useState('none');
+  const [currentRetailer, setCurrentRetailer] = useState(null);
+  const [isLoadingRules, setIsLoadingRules] = useState(false);
+  const [error, setError] = useState(null);
 
   const handleAnalyze = (productData) => {
     if (!ruleEngine.hasValidRules()) {
-      alert('Please upload a routing guide PDF first to extract compliance rules.');
-      setShowPDFParser(true);
+      alert('Please select a retailer first to load compliance rules.');
       return;
     }
 
@@ -27,71 +28,105 @@ function App() {
     setAnalysisResults(null);
   };
 
-  const handleDataExtracted = (extractedData) => {
-    // Convert PDF data to our application format
-    const convertedRules = DynamicRuleEngine.convertPdfToApplicationRules(extractedData);
+  const handleRetailerSelected = async (retailer) => {
+    setIsLoadingRules(true);
+    setError(null);
     
-    // Create new rule engine with extracted data
-    const newRuleEngine = new DynamicRuleEngine(convertedRules);
-    setRuleEngine(newRuleEngine);
-    setDataSource('pdf');
-    
-    console.log('Rules loaded from PDF:', convertedRules);
-    
-    // Show success message
-    const ruleCount = Object.keys(convertedRules.productRules).length + Object.keys(convertedRules.hangerChart).length;
-    alert(`Success! Loaded ${ruleCount} rules from PDF. You can now analyze products.`);
+    try {
+      // Load the retailer's routing guide automatically
+      const extractedData = await PDFLoader.loadRetailerRules(retailer);
+      
+      // Convert to application format
+      const convertedRules = DynamicRuleEngine.convertPdfToApplicationRules(extractedData);
+      
+      // Create new rule engine with retailer data
+      const newRuleEngine = new DynamicRuleEngine(convertedRules);
+      setRuleEngine(newRuleEngine);
+      setCurrentRetailer(retailer);
+      
+      console.log(`${retailer.name} rules loaded:`, convertedRules);
+      
+    } catch (err) {
+      setError(`Failed to load ${retailer.name} compliance rules: ${err.message}`);
+      console.error('Retailer loading error:', err);
+    } finally {
+      setIsLoadingRules(false);
+    }
   };
 
   const getRuleSourceDisplay = () => {
+    if (!currentRetailer) return '⚠️ No Retailer Selected';
+    if (isLoadingRules) return `🔄 Loading ${currentRetailer.name} Rules...`;
+    
     const source = ruleEngine.getRuleSource();
-    switch (source.source) {
-      case 'pdf': return `📄 PDF Rules (${source.totalRules} rules loaded)`;
-      case 'empty': return '⚠️ No Rules Loaded - Upload PDF';
-      default: return '❓ Unknown Source';
-    }
+    return `✅ ${currentRetailer.name} Rules (${source.totalRules} rules loaded)`;
   };
 
   return (
     <div className="App">
       <header className="app-header">
-        <h1>Dick's Sporting Goods - Smart Compliance Assistant</h1>
+        <h1>Smart Compliance Assistant</h1>
         <div className="header-controls">
           <div className="rule-source">
             {getRuleSourceDisplay()}
           </div>
-          <button 
-            onClick={() => setShowPDFParser(!showPDFParser)}
-            className="toggle-parser-btn"
-          >
-            {showPDFParser ? 'Hide' : 'Show'} PDF Parser
-          </button>
         </div>
       </header>
       <main className="app-main">
         <div className="container">
-          {showPDFParser && (
-            <div className="pdf-section">
-              <PDFParser onDataExtracted={handleDataExtracted} />
+          {!currentRetailer || !ruleEngine.hasValidRules() ? (
+            <>
+              <RetailerSelector 
+                onRetailerSelected={handleRetailerSelected}
+                currentRetailer={currentRetailer?.id}
+                isLoading={isLoadingRules}
+              />
               
-              {!ruleEngine.hasValidRules() && (
-                <div className="no-rules-warning">
-                  <h3>⚠️ No Compliance Rules Loaded</h3>
-                  <p>This application now runs entirely on PDF-extracted data. Please upload a retailer's routing guide PDF above to begin.</p>
-                  <p><strong>What this demonstrates:</strong></p>
-                  <ul>
-                    <li>Dynamic rule system that works with any retailer</li>
-                    <li>PDF parsing and data extraction capabilities</li>
-                    <li>Scalable architecture beyond Dick's Sporting Goods</li>
-                    <li>Real-time rule loading and application</li>
-                  </ul>
+              {error && (
+                <div className="error-message">
+                  <h3>⚠️ Error Loading Rules</h3>
+                  <p>{error}</p>
+                  <button onClick={() => setError(null)}>Try Again</button>
                 </div>
               )}
-            </div>
-          )}
-          
-          {ruleEngine.hasValidRules() && (
+              
+              {!currentRetailer && (
+                <div className="no-retailer-warning">
+                  <h3>👋 Welcome to Smart Compliance Assistant</h3>
+                  <p>Select which retailer you're shipping to above, and we'll automatically load their specific compliance requirements.</p>
+                  <div className="benefits-grid">
+                    <div className="benefit">
+                      <h4>🎯 Retailer Specific</h4>
+                      <p>Get exact requirements for each retailer's routing guide</p>
+                    </div>
+                    <div className="benefit">
+                      <h4>💰 Prevent Penalties</h4>
+                      <p>Avoid $250-$500+ compliance violations</p>
+                    </div>
+                    <div className="benefit">
+                      <h4>📋 Step-by-Step</h4>
+                      <p>Clear guidance for complex VAS requirements</p>
+                    </div>
+                  </div>
+                </div>
+              )}
+            </>
+          ) : (
             <>
+              <div className="retailer-header">
+                <h2>📦 Shipping to: {currentRetailer.name}</h2>
+                <button 
+                  onClick={() => {
+                    setCurrentRetailer(null);
+                    setRuleEngine(new DynamicRuleEngine());
+                    setAnalysisResults(null);
+                  }}
+                  className="change-retailer-btn"
+                >
+                  Change Retailer
+                </button>
+              </div>
+
               {!analysisResults ? (
                 <ProductInput onAnalyze={handleAnalyze} />
               ) : (

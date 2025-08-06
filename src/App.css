@@ -1109,3 +1109,169 @@
 .pdf-section {
   margin-bottom: 2rem;
 }
+
+/* Retailer Selector Styling */
+.retailer-selector {
+  margin-bottom: 2rem;
+  padding: 2rem;
+  background: linear-gradient(135deg, #e0f2fe 0%, #f0f9ff 100%);
+  border: 2px solid #0284c7;
+  border-radius: 12px;
+}
+
+.retailer-selector h3 {
+  color: #0c4a6e;
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.selector-description {
+  color: #475569;
+  margin-bottom: 2rem;
+  font-size: 1rem;
+}
+
+.retailer-form {
+  margin-bottom: 2rem;
+}
+
+.retailer-dropdown {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  border: 2px solid #0284c7;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  background: white;
+}
+
+.retailer-dropdown:focus {
+  outline: none;
+  border-color: #0c4a6e;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.1);
+}
+
+.retailer-info {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 8px;
+  border-left: 4px solid #0284c7;
+}
+
+.selected-retailer h4 {
+  color: #0c4a6e;
+  margin: 0 0 0.5rem 0;
+}
+
+.loading-rules {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 1rem;
+  color: #0284c7;
+}
+
+.retailer-benefits {
+  background: rgba(255, 255, 255, 0.8);
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+.retailer-benefits h5 {
+  color: #0c4a6e;
+  margin: 0 0 1rem 0;
+}
+
+.retailer-benefits ul {
+  margin: 0;
+  color: #475569;
+}
+
+.retailer-benefits li {
+  margin-bottom: 0.75rem;
+}
+
+/* No retailer warning */
+.no-retailer-warning {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.no-retailer-warning h3 {
+  color: #334155;
+  margin: 0 0 1rem 0;
+}
+
+.benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.benefit {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 8px;
+  text-align: center;
+  border: 1px solid #e2e8f0;
+}
+
+.benefit h4 {
+  color: #0284c7;
+  margin: 0 0 0.5rem 0;
+}
+
+.benefit p {
+  color: #64748b;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Retailer header */
+.retailer-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: white;
+  border-radius: 8px;
+  border-left: 4px solid #10b981;
+}
+
+.retailer-header h2 {
+  color: #059669;
+  margin: 0;
+}
+
+.change-retailer-btn {
+  background: #6b7280;
+  color: white;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.change-retailer-btn:hover {
+  background: #4b5563;
+}
+
+@media (max-width: 768px) {
+  .retailer-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+  
+  .benefits-grid {
+    grid-template-columns: 1fr;
+  }
+}
